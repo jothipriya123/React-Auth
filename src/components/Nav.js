@@ -8,11 +8,11 @@ export default class Nav extends Component{
             res => {
                 console.log(res);
                 this.setState({
-                    login:res.data,
+                  users:res.data,
                    
                 })
                 console.log("Login Details",res.data)
-                console.log("User Details",this.state.login)
+                console.log("User Details",this.state.users)
             },
             err => {
                 console.log(err)
@@ -39,9 +39,9 @@ console.log("Logout")
         <div className="container">
           <Link to={"/"} className="navbar-brand">Home</Link>
           <div className="collapse navbar-collapse">
-            {(this.state.login) ?
+            {(this.state.users) ?
             <ul className="navbar-nav ml-auto">
-            <li className="nav-item"><Link to={"/"} onClick={() =>localStorage.removeItem("token")} className="nav-link">Logout</Link></li> 
+            <li className="nav-item"><Link to={"/"} onClick={() =>localStorage.clear()} className="nav-link">Logout</Link></li> 
             </ul>: 
             <ul className="navbar-nav ml-auto">
             <li className="nav-item"><Link to={"/login"} className="nav-link">Login</Link></li>

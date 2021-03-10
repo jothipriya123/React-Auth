@@ -7,13 +7,13 @@ export default class Home extends Component{
         
         axios.get('users').then(
             res => {
-                console.log(res);
+                console.log("Res",res);
                 this.setState({
-                    login:res.data,
-                   
+                    users:res.data,
+                    first_name:res.data[0].first_name,
                 })
-                console.log("Login Details",res.data)
-                console.log("User Details",this.state.login)
+                console.log("First Name",this.state.first_name)
+                console.log("User Details",this.state.users)
             },
             err => {
                 console.log(err)
@@ -21,14 +21,13 @@ export default class Home extends Component{
         )
     }
     render(){
-        
-        if(this.state.login){
-            return(
-                <h2>Hi {this.state.login.email}</h2>
-            )
+        console.log("Insite Render",this.state.users);
+        if(this.state.users){
+            console.log("Inside if Logged  In",this.state.users);
+            return(<h2>Welcome {this.state.first_name}</h2>)
+        }else{
+            console.log("Logged Out",this.state.users);
+            return(<h2>You are not logged In</h2>)
         }
-        return(
-            <h2>You are not logged In</h2>
-        )
     }
 }
